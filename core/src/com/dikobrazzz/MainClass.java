@@ -34,8 +34,8 @@ public class MainClass extends ApplicationAdapter {
 	}
 
 	public void update (float dt){
-		if (Intersector.overlaps(new com.badlogic.gdx.math.Circle(circle1.getPosition().x, circle1.getPosition().y, sizeCircle1/2),
-				new com.badlogic.gdx.math.Circle(circle2.getPosition().x, circle2.getPosition().y,sizeCircle2/2))){
+		if (Intersector.overlaps(new com.badlogic.gdx.math.Circle(circle1.getPosition().x + sizeCircle1/2, circle1.getPosition().y + sizeCircle1/2, sizeCircle1/2),
+				new com.badlogic.gdx.math.Circle(circle2.getPosition().x+ sizeCircle2/2, circle2.getPosition().y+ sizeCircle2/2,sizeCircle2/2))){
 			collision = true;
 		}
 		circle1.update(dt);
