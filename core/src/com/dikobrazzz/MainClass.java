@@ -34,8 +34,9 @@ public class MainClass extends ApplicationAdapter {
 	}
 
 	public void update (float dt){
-		if (Intersector.overlaps(new com.badlogic.gdx.math.Circle(circle1.getPosition().x + sizeCircle1/2, circle1.getPosition().y + sizeCircle1/2, sizeCircle1/2),
-				new com.badlogic.gdx.math.Circle(circle2.getPosition().x+ sizeCircle2/2, circle2.getPosition().y+ sizeCircle2/2,sizeCircle2/2))){
+		circle1.setCircleShape(circle1.getPosition().x + sizeCircle1/2, circle1.getPosition().y + sizeCircle1/2, sizeCircle1/2);
+		circle2.setCircleShape(circle2.getPosition().x+ sizeCircle2/2, circle2.getPosition().y+ sizeCircle2/2,sizeCircle2/2);
+		if (Intersector.overlaps(circle1.getCircleShape(),circle2.getCircleShape())){
 			collision = true;
 		}
 		circle1.update(dt);
@@ -63,6 +64,15 @@ public class MainClass extends ApplicationAdapter {
 		private float size;
 		private float speedX;
 		private float speedY;
+                private com.badlogic.gdx.math.Circle circleShape;
+
+		public com.badlogic.gdx.math.Circle getCircleShape() {
+			return circleShape;
+		}
+
+		public void setCircleShape(float x, float y, float radius) {
+			circleShape.set(x, y, radius);
+		}
 
 		public Circle (float x, float y, float sizze, float speeedX, float speeedY) {
 			texture = new Texture("circle.png");
@@ -72,6 +82,7 @@ public class MainClass extends ApplicationAdapter {
 			velosity = new Vector2(speedX, speedY);
 			size = sizze;
 			turnX = false;
+			this.circleShape = new com.badlogic.gdx.math.Circle(x + sizze/2, y + sizze/2, sizze/2);
 		}
 
 		public void render (SpriteBatch batch){
